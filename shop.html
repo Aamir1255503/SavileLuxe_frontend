@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SavileLuxe - Shop Luxury Suits & Blazers</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #0f0f0f;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        span {
+            font-family: serif;
+            color: #007bff;
+        }
+        .container-fluid {
+            padding: 0 5%;
+        }
+        /* Filter Button */
+        .filter-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.3s, transform 0.2s;
+            margin-bottom: 20px;
+        }
+        .filter-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+        /* Sidebar (Offcanvas) Styles */
+        .sidebar-offcanvas {
+            overflow: scroll;
+            scrollbar-width: none; 
+            -ms-overflow-style: none;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            width: 300px;
+        }
+       
+        .sidebar-offcanvas .offcanvas-header {
+            background: #1a1a1a;
+            padding: 15px;
+        }
+        .sidebar-offcanvas .offcanvas-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .sidebar-offcanvas .btn-close {
+            filter: invert(1);
+        }
+        .sidebar-offcanvas .offcanvas-body {
+            overflow: scroll;
+            scrollbar-width: none; 
+            -ms-overflow-style: none;
+            padding: 20px;
+        }
+        .sidebar-offcanvas h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        .sidebar-offcanvas .filter-group {
+            margin-bottom: 20px;
+        }
+        .sidebar-offcanvas .filter-group h5 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #ddd;
+        }
+        .sidebar-offcanvas .filter-group ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar-offcanvas .filter-group ul li {
+            margin-bottom: 10px;
+        }
+        .sidebar-offcanvas .filter-group ul li a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s, padding-left 0.3s;
+        }
+        .sidebar-offcanvas .filter-group ul li a:hover {
+            color: #007bff;
+            padding-left: 5px;
+        }
+        .sidebar-offcanvas .filter-group input[type="range"] {
+            width: 100%;
+            accent-color: #007bff;
+        }
+        .sidebar-offcanvas .filter-group .price-range {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .sidebar-offcanvas .filter-group .color-box {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            margin-right: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .sidebar-offcanvas .filter-group .color-box:hover {
+            transform: scale(1.2);
+        }
+        /* Product Card Styles */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px 0;
+        }
+        .card {
+            height: 460px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 0;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+        .card .off {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #ff4d4d;
+            color: white;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        .card:hover .off {
+            background: #007bff;
+        }
+        .card-header {
+            width: 100%;
+            height: 50%;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+            border: none;
+        }
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+        }
+        .card:hover img {
+            transform: scale(1.1);
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .card-text {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        .card .rating {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        .card .rating i {
+            color: #f1c40f;
+            font-size: 14px;
+        }
+        .btn-primary {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.3s, transform 0.2s;
+            width: 100%;
+            text-align: center;
+        }
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+        /* Responsive Design */
+        @media (min-width: 1200px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (min-width: 992px) and (max-width: 1199px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .card {
+                height: 440px;
+            }
+            .card img {
+                height: 200px;
+            }
+        }
+        @media (min-width: 768px) and (max-width: 991px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 767px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            .card {
+                height: 420px;
+            }
+            .card img {
+                height: 180px;
+            }
+            .filter-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav id="navbar">
+            <h1 class="logo">Sav<span>i</span>leLu<span>x</span>e</h1>
+            <ul>
+                <li><a href="#">Sale</a></li>
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Women</a></li>
+                <li><a href="#">New Arrivals</a></li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+            <form action="">
+                <input type="text" placeholder="Search Products">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+
+            <div class="icon__container">
+                <a href="#" class="icon"><i class="fas fa-heart"></i></a>
+                <a href="#" class="icon"><i class="fas fa-shopping-cart"></i></a>
+                <!-- <a href="#" class="icon"></a> -->
+            </div>
+            <button class="toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">SAVILELUXE</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul>
+                <li><a href="#">Sale</a></li>
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Women</a></li>
+                <li><a href="#">New Arrivals</a></li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+            <form action="">
+                <input type="text" placeholder="Search Products">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+
+            <div class="icon__container">
+                <a href="#" class="icon"><i class="fas fa-heart"></i></a>
+                <a href="#" class="icon"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <main>
+        <div class="container-fluid my-5">
+            <div class="row">
+                <!-- Product Grid -->
+                <div class="col-12">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h1>Shop <span>Now</span></h1>
+                        <button class="filter-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas" aria-controls="sidebarOffcanvas">
+                            <i class="fas fa-filter"></i> Filter Products
+                        </button>
+                    </div>
+                    <div class="product-grid">
+                        <!-- Product Card 1 -->
+                        <div class="card">
+                            <div class="card-header">
+                                <img src="assets/images/products/Business Suits.jpg" alt="Business Suit">
+                            </div>
+                            <span class="off">15% OFF</span>
+                            <div class="card-body">
+                                <h5 class="card-title">Business Suit</h5>
+                                <b class="text-danger"><del>$1400</del> $1200</b>
+                                <p class="card-text">Premium wool suit with a tailored fit.</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                            </div>
+                        </div>
+                        <!-- Product Card 2 -->
+                        <div class="card">
+                            <div class="card-header">
+                                <img src="assets/images/products/Casual Suits.jpg" alt="Casual Suit">
+                            </div>
+                            <span class="off">10% OFF</span>
+                            <div class="card-body">
+                                <h5 class="card-title">Casual Suit</h5>
+                                <b class="text-danger"><del>$1200</del> $1080</b>
+                                <p class="card-text">Lightweight suit for modern casual style.</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                            </div>
+                        </div>
+                        <!-- Product Card 3 -->
+                        <div class="card">
+                            <div class="card-header">
+                                <img src="assets/images/products/Classic Grey Suit.jpg" alt="Classic Grey Suit">
+                            </div>
+                            <span class="off">20% OFF</span>
+                            <div class="card-body">
+                                <h5 class="card-title">Classic Grey Suit</h5>
+                                <b class="text-danger"><del>$1500</del> $1200</b>
+                                <p class="card-text">Timeless grey suit for formal occasions.</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                            </div>
+                        </div>
+                        <!-- Product Card 4 -->
+                        <div class="card">
+                            <div class="card-header">
+                                <img src="assets/images/products/Elegant Navy Suit.jpg" alt="Navy Suit">
+                            </div>
+                            <span class="off">15% OFF</span>
+                            <div class="card-body">
+                                <h5 class="card-title">Navy Suit</h5>
+                                <b class="text-danger"><del>$1600</del> $1360</b>
+                                <p class="card-text">Elegant navy suit with a slim fit.</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Sidebar Offcanvas -->
+        <div class="offcanvas offcanvas-start sidebar-offcanvas" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel">
+            <div class="offcanvas-header">
+                <h3 class="offcanvas-title" id="sidebarOffcanvasLabel">Filter <span>Products</span></h3>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <!-- Categories -->
+                <div class="filter-group">
+                    <h5>Categories</h5>
+                    <ul>
+                        <li><a href="#" data-filter="category" data-value="all">All</a></li>
+                        <li><a href="#" data-filter="category" data-value="business">Business Suits</a></li>
+                        <li><a href="#" data-filter="category" data-value="casual">Casual Suits</a></li>
+                        <li><a href="#" data-filter="category" data-value="grey">Classic Grey</a></li>
+                        <li><a href="#" data-filter="category" data-value="navy">Navy Suits</a></li>
+                    </ul>
+                </div>
+                <!-- Price Range -->
+                <div class="filter-group">
+                    <h5>Price Range</h5>
+                    <input type="range" min="0" max="2000" value="2000" id="priceRange">
+                    <div class="price-range">
+                        <span>$0</span>
+                        <span id="maxPrice">$2000</span>
+                    </div>
+                </div>
+                <!-- Colors -->
+                <div class="filter-group">
+                    <h5>Colors</h5>
+                    <ul>
+                        <li><a href="#" data-filter="color" data-value="black"><span class="color-box" style="background: #000;"></span>Black</a></li>
+                        <li><a href="#" data-filter="color" data-value="navy"><span class="color-box" style="background: #001f3f;"></span>Navy</a></li>
+                        <li><a href="#" data-filter="color" data-value="grey"><span class="color-box" style="background: #808080;"></span>Grey</a></li>
+                        <li><a href="#" data-filter="color" data-value="blue"><span class="color-box" style="background: #007bff;"></span>Blue</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        // Price Range Slider
+        const priceRange = document.getElementById('priceRange');
+        const maxPrice = document.getElementById('maxPrice');
+        priceRange.addEventListener('input', () => {
+            maxPrice.textContent = `$${priceRange.value}`;
+            // Add logic to filter products by price
+        });
+
+        // Filter Logic (Client-Side)
+        document.querySelectorAll('.sidebar-offcanvas a[data-filter]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const filterType = link.dataset.filter;
+                const filterValue = link.dataset.value;
+                // Add logic to filter products by category or color
+                console.log(`Filtering by ${filterType}: ${filterValue}`);
+                // Example: Fetch filtered products via AJAX or manipulate DOM
+            });
+        });
+    </script>
+</body>
+</html>

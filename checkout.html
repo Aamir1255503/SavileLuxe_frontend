@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete your purchase at SavileLuxe. Review your order, enter billing and shipping details, and proceed to payment.">
+    <meta name="keywords" content="checkout, savileluxe, luxury suits, payment">
+    <meta name="robots" content="index, follow">
+    <title>SavileLuxe - Checkout</title>
+    <link rel="stylesheet" href="assets/css/swipper.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .container-fluid {
+            padding: 0 5%;
+        }
+        /* Checkout Section */
+        .checkout-section {
+            padding: 50px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .checkout-section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 8px;
+            display: inline-block;
+            letter-spacing: 1px;
+        }
+        .checkout-section p {
+            font-size: 16px;
+            color: #d0d0d0;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+        /* Order Summary */
+        .order-summary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 25px 40px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 30px rgba(0, 123, 255, 0.1);
+        }
+        .order-summary h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 8px;
+            display: inline-block;
+            letter-spacing: 1px;
+        }
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+        }
+        .order-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .order-item-details {
+            flex: 1;
+        }
+        .order-item-details h5 {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 4px;
+            color: #e0e0e0;
+        }
+        .order-item-details p {
+            font-size: 13px;
+            color: #aaa;
+            margin-bottom: 4px;
+        }
+        .order-item-details .price {
+            font-size: 15px;
+            font-weight: 500;
+            color: #ff4d4d;
+        }
+        .order-summary .summary-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+        .order-summary .summary-item.total {
+            font-weight: 600;
+            font-size: 16px;
+            border-top: 1px solid #2a2a2a;
+            padding-top: 8px;
+        }
+        /* Checkout Form */
+        .checkout-form-container {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 25px 40px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 30px rgba(0, 123, 255, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .checkout-form-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 123, 255, 0.2);
+        }
+        .checkout-form-container h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 8px;
+            display: inline-block;
+            letter-spacing: 1px;
+        }
+        .checkout-form-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .checkout-form-container .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .checkout-form-container label {
+            font-size: 14px;
+            color: #ddd;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .checkout-form-container input,
+        .checkout-form-container select {
+            background: #1a1a1a;
+            border: 1px solid #007bff;
+            border-radius: 8px;
+            padding: 10px 12px;
+            color: white;
+            font-size: 14px;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+        .checkout-form-container input:focus,
+        .checkout-form-container select:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+            outline: none;
+        }
+        .checkout-form-container .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        .checkout-form-container .checkbox-group input {
+            width: 16px;
+            height: 16px;
+        }
+        .checkout-form-container .checkbox-group label {
+            font-size: 13px;
+            color: #d0d0d0;
+        }
+        .checkout-form-container .payment-method {
+            margin-top: 15px;
+        }
+        .checkout-form-container .payment-method h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .checkout-form-container .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .checkout-form-container .payment-option input {
+            width: 16px;
+            height: 16px;
+        }
+        .checkout-form-container .payment-option label {
+            font-size: 14px;
+            color: #d0d0d0;
+        }
+        .checkout-form-container .btn-place-order {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+        .checkout-form-container .btn-place-order::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        .checkout-form-container .btn-place-order:hover::before {
+            left: 100%;
+        }
+        .checkout-form-container .btn-place-order:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.5);
+        }
+        .form-message {
+            display: none;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        .form-message.success {
+            background: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+        }
+        .form-message.error {
+            background: rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+        }
+        /* Responsive Design */
+        @media (max-width: 991px) {
+            .order-summary, .checkout-form-container {
+                margin-bottom: 25px;
+                padding: 20px 30px;
+            }
+            .order-item {
+                padding: 8px 12px;
+            }
+        }
+        @media (max-width: 767px) {
+            .checkout-section {
+                padding: 30px 0;
+            }
+            .checkout-section h2 {
+                font-size: 26px;
+            }
+            .checkout-section p {
+                font-size: 14px;
+                margin-bottom: 25px;
+            }
+            .order-summary, .checkout-form-container {
+                padding: 15px 25px;
+            }
+            .order-summary h3, .checkout-form-container h3 {
+                font-size: 18px;
+            }
+            .order-item {
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 8px 10px;
+            }
+            .order-item img {
+                width: 50px;
+                height: 50px;
+            }
+            .order-item-details h5 {
+                font-size: 14px;
+            }
+            .order-item-details p {
+                font-size: 12px;
+            }
+            .order-item-details .price {
+                font-size: 14px;
+            }
+            .order-summary .summary-item {
+                font-size: 14px;
+            }
+            .order-summary .summary-item.total {
+                font-size: 15px;
+            }
+            .checkout-form-container form {
+                gap: 12px;
+            }
+            .checkout-form-container label {
+                font-size: 13px;
+            }
+            .checkout-form-container input,
+            .checkout-form-container select {
+                padding: 8px 10px;
+                font-size: 13px;
+            }
+            .checkout-form-container .checkbox-group label {
+                font-size: 12px;
+            }
+            .checkout-form-container .payment-method h4 {
+                font-size: 16px;
+            }
+            .checkout-form-container .payment-option label {
+                font-size: 13px;
+            }
+            .checkout-form-container .btn-place-order {
+                padding: 10px;
+                font-size: 14px;
+            }
+            .form-message {
+                font-size: 13px;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body id="Checkout_page">
+    <header>
+        <nav id="navbar" class="home_page_nav">
+            <h1 class="logo">Sav<span>i</span>leLu<span>x</span>e</h1>
+            <ul>
+                <li><a href="shop.html">Sale</a></li>
+                <li><a href="shop.html">Men</a></li>
+                <li><a href="shop.html">New Arrivals</a></li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+            <form action="">
+                <input type="text" placeholder="Search Products">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+
+            <div class="icon__container">
+                <a href="#" class="icon"><i class="fas fa-heart"></i></a>
+                <a href="#" class="icon"><i class="fas fa-shopping-cart"></i></a>
+                <!-- <a href="#" class="icon"></a> -->
+            </div>
+            <button class="toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">SAVILELUXE</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul>
+                <li><a href="#">Sale</a></li>
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Women</a></li>
+                <li><a href="#">New Arrivals</a></li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+            <form action="">
+                <input type="text" placeholder="Search Products">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+
+            <div class="icon__container">
+                <a href="#" class="icon"><i class="fas fa-heart"></i></a>
+                <a href="#" class="icon"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <main>
+        <div class="container-fluid checkout-section px-5">
+            <h2>Checkout</h2>
+            <p>Review your order, enter your details, and complete your purchase securely.</p>
+            <div class="row">
+                <!-- Order Summary -->
+                <div class="col-lg-4 col-md-12">
+                    <div class="order-summary">
+                        <h3>Order Summary</h3>
+                        <!-- Sample Item -->
+                        <div class="order-item">
+                            <img src="assets/images/products/Tuxedos.jpg" alt="Tuxedo Suit">
+                            <div class="order-item-details">
+                                <h5>Tuxedo Suits</h5>
+                                <p>Size: M | Color: Black | Qty: 1</p>
+                                <div class="price">$1000</div>
+                            </div>
+                        </div>
+                        <div class="summary-item">
+                            <span>Subtotal</span>
+                            <span id="subtotal">$1000</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Shipping</span>
+                            <span>Free</span>
+                        </div>
+                        <div class="summary-item total">
+                            <span>Total</span>
+                            <span id="total">$1000</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Checkout Form -->
+                <div class="col-lg-8 col-md-12">
+                    <div class="checkout-form-container">
+                        <h3>Billing & Shipping Details</h3>
+                        <form id="checkoutForm">
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" placeholder="Your Full Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" id="address" placeholder="Your Address" required>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="city">City</label>
+                                        <input type="text" id="city" placeholder="City" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="zipCode">ZIP Code</label>
+                                        <input type="text" id="zipCode" placeholder="ZIP Code" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <select id="country" required>
+                                    <option value="" disabled selected>Select Country</option>
+                                    <option value="uk">United Kingdom</option>
+                                    <option value="us">United States</option>
+                                    <option value="pk">Pakistan</option>
+                                    <!-- Add more countries as needed -->
+                                </select>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="sameAddress" checked>
+                                <label for="sameAddress">Billing address same as shipping</label>
+                            </div>
+                            <div class="payment-method">
+                                <h4>Payment Method</h4>
+                                <div class="payment-option">
+                                    <input type="radio" id="creditCard" name="paymentMethod" value="creditCard" required>
+                                    <label for="creditCard">Credit Card</label>
+                                </div>
+                                <div class="payment-option">
+                                    <input type="radio" id="paypro" name="paymentMethod" value="paypro">
+                                    <label for="paypro">PayPro</label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-place-order">Place Order</button>
+                        </form>
+                        <div id="formMessage" class="form-message"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <!-- Left Section (Logo, Social Media, Payment Methods) -->
+                <div class="footer-left">
+                    <!-- <img src="assets/logo.png" alt="SavileLuxe Logo" class="footer-logo"> -->
+                    <h1 class="logo">SAV<span>I</span>LELU<span>X</span>E</h1>
+                    <p class="tagline">Refined Elegance, Timeless Style.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                    <div class="payment-icons">
+                        <img src="assets/images/icons/paypal.png" alt="PayPal">
+                        <img src="assets/images/icons/visa.png" alt="Visa">
+                        <img src="assets/images/icons/mastercard.png" alt="MasterCard">
+                    </div>
+                </div>
+    
+                <!-- Quick Links -->
+                <div class="footer-links">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Categories -->
+                <div class="footer-links">
+                    <h5>Categories</h5>
+                    <ul>
+                        <li><a href="#">Men's Blazers</a></li>
+                        <li><a href="#">Casual Suits</a></li>
+                        <li><a href="#">Classic Wear</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Contact Us -->
+                <div class="footer-contact">
+                    <h5>Contact Us</h5>
+                    <p>Email: support@savileluxe.com</p>
+                    <p>Phone: +123 456 7890</p>
+                    <p>Address: 123 Street, City, Country</p>
+                </div>
+    
+                
+            </div>
+    
+            <!-- Copyright Message -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 SavileLuxe. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/swiper.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script>
+        document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const zipCode = document.getElementById('zipCode').value.trim();
+            const country = document.getElementById('country').value;
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value;
+            const formMessage = document.getElementById('formMessage');
+
+            // Basic validation
+            if (!fullName || !email || !address || !city || !zipCode || !country || !paymentMethod) {
+                formMessage.className = 'form-message error';
+                formMessage.textContent = 'Please fill out all required fields.';
+                formMessage.style.display = 'block';
+                return;
+            }
+
+            if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+                formMessage.className = 'form-message error';
+                formMessage.textContent = 'Please enter a valid email address.';
+                formMessage.style.display = 'block';
+                return;
+            }
+
+            if (!/^\d{5}$/.test(zipCode)) {
+                formMessage.className = 'form-message error';
+                formMessage.textContent = 'Please enter a valid ZIP code (5 digits).';
+                formMessage.style.display = 'block';
+                return;
+            }
+
+            // Placeholder for payment gateway integration (e.g., PayPro)
+            if (paymentMethod === 'paypro') {
+                // PayPro integration placeholder
+                console.log('Initiating PayPro payment...');
+                // Example: Redirect to PayPro payment page
+                // window.location.href = 'https://paypro.com/payment?order_id=123';
+                formMessage.className = 'form-message success';
+                formMessage.textContent = 'Redirecting to PayPro payment...';
+                formMessage.style.display = 'block';
+            } else {
+                // Placeholder for other payment methods
+                formMessage.className = 'form-message success';
+                formMessage.textContent = 'Order placed successfully! You will receive a confirmation email shortly.';
+                formMessage.style.display = 'block';
+                this.reset();
+            }
+        });
+    </script>
+</body>
+</html>

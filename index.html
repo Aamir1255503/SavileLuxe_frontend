@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Hero Carousel</title>
+    <link rel="stylesheet" href="assets/css/swipper.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav id="navbar" class="home_page_nav">
+            <h1 class="logo">Sav<span>i</span>leLu<span>x</span>e</h1>
+            <ul>
+                <li><a href="shop.html">Sale</a></li>
+                <li><a href="shop.html">Men</a></li>
+                <li><a href="shop.html">New Arrivals</a></li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+            <form action="">
+                <input type="text" placeholder="Search Products">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+
+            <div class="icon__container">
+                <a href="#" class="icon"><i class="fas fa-heart"></i></a>
+                <a href="#" class="icon"><i class="fas fa-shopping-cart"></i></a>
+                <!-- <a href="#" class="icon"></a> -->
+            </div>
+            <button class="toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">SAVILELUXE</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul>
+                <li><a href="#">Sale</a></li>
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Women</a></li>
+                <li><a href="#">New Arrivals</a></li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+            <form action="">
+                <input type="text" placeholder="Search Products">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+
+            <div class="icon__container">
+                <a href="#" class="icon"><i class="fas fa-heart"></i></a>
+                <a href="#" class="icon"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <main>
+          <!-- Full-Screen Swiper Carousel -->
+          <div class="swiper mySwiper">
+              <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                      <img src="https://media.istockphoto.com/id/640242804/photo/businessman-adjusting-his-cufflinks.jpg?s=1024x1024&w=is&k=20&c=JJZD-eT5AjANdCvwopnFTzbp2BP7eH9gT6K87CiHMh4=" alt="Slide 1" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+                      <div class="text-content">
+                          <h1>Luxury Suits for the Modern Gentleman</h1>
+                          <p> Elevate your style with premium craftsmanship and timeless elegance.</p>
+                          <a href="#" class="btn btn-primary">Shop Now</a>
+                      </div>
+                  </div>
+                  <div class="swiper-slide">
+                      <img src="https://media.istockphoto.com/id/1284889897/photo/asian-businessman-in-a-black-suit-is-standing-on-a-black-background-and-has-space-for-text.jpg?s=1024x1024&w=is&k=20&c=6uz9pYSBLByyj5iNNkSAOxn2Vwc2GtvZb6KVA8t2rIc=" alt="Slide 2" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+                      <div class="text-content">
+                          <h1>Refined Elegance,<br>
+                              Perfect Fit</h1>
+                          <p>Discover premium suits designed for sophistication and style.</p>
+                          <a href="#" class="btn btn-primary">Explore Now</a>
+                      </div>
+                  </div>
+                  <div class="swiper-slide">
+                      <img src="https://media.istockphoto.com/id/533713586/photo/businessman-adjust-necktie-his-suit.jpg?s=1024x1024&w=is&k=20&c=_pb9gzECMGbfLCxeaCJGyM5nrompIAOo8AF9dxjvBeU=" alt="Slide 3" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+                      <div class="text-content">
+                          <h1>Tailored for Success</h1>
+                          <p>Experience luxury suits crafted for the modern man.</p>
+                          <a href="#" class="btn btn-primary">Shop Suits</a>
+                      </div>
+                  </div>
+              </div>
+              <div style="height: 100vh; width:100vw;">
+                  <h1>Savil Luxe</h1>
+              </div>
+              <!-- Navigation Buttons -->
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+          </div>
+          <div class="container my-5">
+            <div class="row">
+                <div class="col-md-4 d-flex flex-column justify-content-center text-white" style="font-family: serif; font-size: larger;">
+                    <h3>More to</h3>
+                    <h1>E<span>x</span>plo<span>r</span>e</h1>
+                    <p>Explore seasonal collections, iconic accessories, and more </p>
+                </div>
+                <div class="col-md-8">
+                    <!-- New Swiper -->
+                    <div class="swiper custom-swiper">
+                      <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="assets/images/products/Business Suits.jpg" alt=""></div>
+                        <div class="swiper-slide"><img src="assets/images/products/Casual Suits.jpg" alt=""></div>
+                        <div class="swiper-slide"><img src="assets/images/products/Classic Grey Suit.jpg" alt=""></div>
+                        <div class="swiper-slide"><img src="assets/images/products/Elegant Navy Suit.jpg" alt=""></div>
+                        <div class="swiper-slide"><img src="assets/images/products/Luxury Black Suit.jpg" alt=""></div>
+                      </div>
+                      <!-- <div class="swiper-pagination custom-pagination"></div> -->
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="content">
+            <div class="container my-5">
+                <div class="row  px-5">
+                    <div class="col-md-12 col-sm-12 col-lg-12 col-xl-12 ">
+                        <h1 class="text-white text-center">Our <span>Best</span> Sellers</h1>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center px-4">
+                    <div class="card col-md-3 col-sm-12 col-lg-3 col-xl-3 m-3">
+                        <div class="card-header">
+                            <img src="assets/images/products/Business Suits.jpg" alt="Card 1" >
+                        </div>
+                        <span class="off">15% OFF</span>
+                        <div class="card-body">
+                                <h5 class="card-title">Business Suits</h5>
+                                <b class="text-danger"><del>$1400</del> $1200 </b>
+                            <p class="card-text">Elevate your style with premium craftsmanship and timeless elegance.</p>
+                            <div class="rating">
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star-half-alt"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card col-md-3 col-sm-12 col-lg-3 col-xl-3 m-3">
+                        <div class="card-header">
+                            <img src="assets/images/products/Business Suits2.jpg" alt="Card 1" >
+                        </div>
+                        <span class="off">15% OFF</span>
+                        <div class="card-body">
+                                <h5 class="card-title">Business Suits</h5>
+                                <b class="text-danger"><del>$1400</del> $1200 </b>
+                            <p class="card-text">Elevate your style with premium craftsmanship and timeless elegance.</p>
+                            <div class="rating">
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star-half-alt"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card col-md-3 col-sm-12 col-lg-3 col-xl-3 m-3">
+                        <div class="card-header">
+                            <img src="assets/images/products/Casual Suits.jpg" alt="Card 1" >
+                        </div>
+                        <span class="off">15% OFF</span>
+                        <div class="card-body">
+                                <h5 class="card-title">Casual Suits</h5>
+                                <b class="text-danger"><del>$1400</del> $1200 </b>
+                            <p class="card-text">Elevate your style with premium craftsmanship and timeless elegance.</p>
+                            <div class="rating">
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star-half-alt"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card col-md-3 col-sm-12 col-lg-3 col-xl-3 m-3">
+                        <div class="card-header">
+                            <img src="assets/images/products/Casual Suits2.jpg" alt="Card 1" >
+                        </div>
+                        <span class="off">15% OFF</span>
+                        <div class="card-body">
+                                <h5 class="card-title">Casual Suits</h5>
+                                <b class="text-danger"><del>$1400</del> $1200 </b>
+                            <p class="card-text">Elevate your style with premium craftsmanship and timeless elegance.</p>
+                            <div class="rating">
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star-half-alt"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card col-md-3 col-sm-12 col-lg-3 col-xl-3 m-3">
+                        <div class="card-header">
+                            <img src="assets/images/products/Classic Grey Suit.jpg" alt="Card 1" >
+                        </div>
+                        <span class="off">15% OFF</span>
+                        <div class="card-body">
+                                <h5 class="card-title">Classic Grey Suit</h5>
+                                <b class="text-danger"><del>$1400</del> $1200 </b>
+                            <p class="card-text">Elevate your style with premium craftsmanship and timeless elegance.</p>
+                            <div class="rating">
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star-half-alt"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card col-md-3 col-sm-12 col-lg-3 col-xl-3 m-3">
+                        <div class="card-header">
+                            <img src="assets/images/products/Classic Grey Suit2.jpg" alt="Card 1" >
+                        </div>
+                        <span class="off">15% OFF</span>
+                        <div class="card-body">
+                                <h5 class="card-title">Classic Grey Suit</h5>
+                                <b class="text-danger"><del>$1400</del> $1200 </b>
+                            <p class="card-text">Elevate your style with premium craftsmanship and timeless elegance.</p>
+                            <div class="rating">
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star-half-alt"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                   
+
+                </div>
+                
+            </div>
+            <div class="banner">
+                <div class="banner-content">
+                    <h1>Discover Your Style</h1>
+                    <p>Explore the latest trends and exclusive collections</p>
+                </div>
+            </div>
+            <div class="features-section">
+                <div class="feature-box">
+                    <img src="assets/images/icons/free_shiping.png" alt="Shipping">
+                    <p>Free Shipping & Free Returns</p>
+                    <span>Exchanges Available</span>
+                </div>
+        
+                <div class="feature-box">
+                    <img src="assets/images/icons/mail.png" alt="Payment">
+                    <p>Shop Now, Pay Later</p>
+                    <span>With <b>PayPal</b> or <b>Klarna</b></span>
+                </div>
+        
+                <div class="feature-box">
+                    <img src="assets/images/icons/money.png" alt="Insurance">
+                    <p>Free Insurance</p>
+                    <span>Protection & Free Replacement</span>
+                </div>
+        
+                <div class="feature-box">
+                    <img src="assets/images/icons/safe_money.png" alt="Secure Payment">
+                    <p>Safe Payments</p>
+                    <span>via <b>Apple Pay</b> & <b>Google Pay</b></span>
+                </div>
+            </div>
+
+            <div class="reviews-section">
+                <h2 class="text-white">Customer Testimonials</h2>
+                <div class="reviews-container">
+                    <div class="review-box">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
+                        <h3>Sarah Johnson</h3>
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p>"Absolutely amazing product quality and super fast delivery! Highly recommended!"</p>
+                    </div>
+        
+                    <div class="review-box">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                        <h3>Michael Smith</h3>
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p>"Customer support was outstanding. The blazer fits perfectly! Will order again!"</p>
+                    </div>
+        
+                    <div class="review-box">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="User">
+                        <h3>Emily Davis</h3>
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p>"The material and stitching are top-notch. I’m in love with my new jacket!"</p>
+                    </div>
+                </div>
+            </div>
+          </div>
+          
+      </main>
+      <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <!-- Left Section (Logo, Social Media, Payment Methods) -->
+                <div class="footer-left">
+                    <!-- <img src="assets/logo.png" alt="SavileLuxe Logo" class="footer-logo"> -->
+                    <h1 class="logo">SAV<span>I</span>LELU<span>X</span>E</h1>
+                    <p class="tagline">Refined Elegance, Timeless Style.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                    <div class="payment-icons">
+                        <img src="assets/images/icons/paypal.png" alt="PayPal">
+                        <img src="assets/images/icons/visa.png" alt="Visa">
+                        <img src="assets/images/icons/mastercard.png" alt="MasterCard">
+                    </div>
+                </div>
+    
+                <!-- Quick Links -->
+                <div class="footer-links">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Categories -->
+                <div class="footer-links">
+                    <h5>Categories</h5>
+                    <ul>
+                        <li><a href="#">Men's Blazers</a></li>
+                        <li><a href="#">Casual Suits</a></li>
+                        <li><a href="#">Classic Wear</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Contact Us -->
+                <div class="footer-contact">
+                    <h5>Contact Us</h5>
+                    <p>Email: support@savileluxe.com</p>
+                    <p>Phone: +123 456 7890</p>
+                    <p>Address: 123 Street, City, Country</p>
+                </div>
+    
+                
+            </div>
+    
+            <!-- Copyright Message -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 SavileLuxe. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/swiper.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

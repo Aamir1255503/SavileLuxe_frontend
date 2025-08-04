@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact SavileLuxe for inquiries, support, or feedback. Reach us via form, phone, email, or visit our store.">
+    <meta name="keywords" content="contact us, savileluxe, luxury suits, support">
+    <meta name="robots" content="index, follow">
+    <title>SavileLuxe - Contact Us</title>
+    <link rel="stylesheet" href="assets/css/swipper.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .container-fluid {
+            padding: 0 5%;
+        }
+        /* Contact Section */
+        .contact-section {
+            padding: 50px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .contact-section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 8px;
+            display: inline-block;
+            letter-spacing: 1px;
+        }
+        .contact-section p {
+            font-size: 16px;
+            color: #d0d0d0;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+        /* Contact Form */
+        .contact-form-container {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 30px rgba(0, 123, 255, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .contact-form-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 123, 255, 0.2);
+        }
+        .contact-form-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Reduced gap for better alignment */
+        }
+        .contact-form-container .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .contact-form-container label {
+            font-size: 14px;
+            color: #ddd;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .contact-form-container input,
+        .contact-form-container textarea {
+            background: #1a1a1a;
+            border: 1px solid #007bff;
+            border-radius: 8px;
+            padding: 10px 12px; /* Adjusted padding */
+            color: white;
+            font-size: 14px;
+            resize: none;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+        .contact-form-container input:focus,
+        .contact-form-container textarea:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+            outline: none;
+        }
+        .contact-form-container textarea {
+            height: 120px; /* Adjusted height */
+        }
+        .contact-form-container .btn-submit {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+        .contact-form-container .btn-submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        .contact-form-container .btn-submit:hover::before {
+            left: 100%;
+        }
+        .contact-form-container .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.5);
+        }
+        .form-message {
+            display: none;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        .form-message.success {
+            background: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+        }
+        .form-message.error {
+            background: rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+        }
+        /* Contact Info */
+        .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 30px rgba(0, 123, 255, 0.1);
+        }
+        .contact-info h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 8px;
+            display: inline-block;
+            letter-spacing: 1px;
+        }
+        .contact-info .info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            font-size: 15px;
+            color: #d0d0d0;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 10px;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .contact-info .info-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
+        }
+        .contact-info .info-item i {
+            color: #007bff;
+            font-size: 20px;
+        }
+        .contact-info .info-item a {
+            color: #d0d0d0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .contact-info .info-item a:hover {
+            color: #007bff;
+        }
+        .contact-info .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        .contact-info .social-links a {
+            color: #007bff;
+            font-size: 20px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        .contact-info .social-links a:hover {
+            color: #fff;
+            background: #007bff;
+            transform: rotate(360deg);
+        }
+        /* Map Section */
+        .map-section {
+            margin-top: 40px;
+        }
+        .map-section h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 8px;
+            display: inline-block;
+            letter-spacing: 1px;
+        }
+        .map-section h3 i {
+            color: #007bff;
+            margin-right: 8px;
+        }
+        .map-placeholder {
+            width: 100%;
+            height: 350px;
+            background: #1a1a1a;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d0d0d0;
+            font-size: 16px;
+            border: 2px solid transparent;
+            background: linear-gradient(#1a1a1a, #1a1a1a) padding-box, linear-gradient(135deg, #007bff, #0056b3) border-box;
+            position: relative;
+            overflow: hidden;
+        }
+        .map-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 123, 255, 0.05);
+            z-index: 1;
+        }
+        .map-placeholder span {
+            z-index: 2;
+        }
+        /* Responsive Design */
+        @media (max-width: 991px) {
+            .contact-form-container, .contact-info {
+                margin-bottom: 25px;
+            }
+        }
+        @media (max-width: 767px) {
+            .contact-section {
+                padding: 30px 0;
+            }
+            .contact-section h2 {
+                font-size: 26px;
+            }
+            .contact-section p {
+                font-size: 14px;
+                margin-bottom: 25px;
+            }
+            .contact-form-container, .contact-info {
+                padding: 15px;
+            }
+            .contact-form-container form {
+                gap: 12px;
+            }
+            .contact-form-container label {
+                font-size: 13px;
+            }
+            .contact-form-container input,
+            .contact-form-container textarea {
+                padding: 8px 10px;
+                font-size: 13px;
+            }
+            .contact-form-container textarea {
+                height: 100px;
+            }
+            .contact-form-container .btn-submit {
+                padding: 10px;
+                font-size: 14px;
+            }
+            .form-message {
+                font-size: 13px;
+                padding: 8px;
+            }
+            .contact-info h3 {
+                font-size: 18px;
+            }
+            .contact-info .info-item {
+                font-size: 13px;
+                margin-bottom: 15px;
+                padding: 8px;
+            }
+            .contact-info .info-item i {
+                font-size: 18px;
+            }
+            .contact-info .social-links a {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+            }
+            .map-section {
+                margin-top: 25px;
+            }
+            .map-section h3 {
+                font-size: 18px;
+            }
+            .map-placeholder {
+                height: 200px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav id="navbar" class="home_page_nav">
+            <h1 class="logo">Sav<span>i</span>leLu<span>x</span>e</h1>
+            <ul>
+                <li><a href="shop.html">Sale</a></li>
+                <li><a href="shop.html">Men</a></li>
+                <li><a href="shop.html">New Arrivals</a></li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+            <form action="">
+                <input type="text" placeholder="Search Products">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+
+            <div class="icon__container">
+                <a href="#" class="icon"><i class="fas fa-heart"></i></a>
+                <a href="#" class="icon"><i class="fas fa-shopping-cart"></i></a>
+                <!-- <a href="#" class="icon"></a> -->
+            </div>
+            <button class="toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">SAVILELUXE</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul>
+                <li><a href="#">Sale</a></li>
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Women</a></li>
+                <li><a href="#">New Arrivals</a></li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+            <form action="">
+                <input type="text" placeholder="Search Products">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+
+            <div class="icon__container">
+                <a href="#" class="icon"><i class="fas fa-heart"></i></a>
+                <a href="#" class="icon"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <main>
+        <div class="container-fluid contact-section px-5">
+            <h2>Contact Us</h2>
+            <p>Have a question or need assistance? Reach out to us, and we’ll get back to you as soon as possible.</p>
+            <div class="row">
+                <!-- Contact Form -->
+                <div class="col-lg-6 col-md-12">
+                    <div class="contact-form-container">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" placeholder="Subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit">Send Message</button>
+                        </form>
+                        <div id="formMessage" class="form-message"></div>
+                    </div>
+                </div>
+                <!-- Contact Info -->
+                <div class="col-lg-6 col-md-12">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Savile Row, London, UK</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <a href="tel:+442012345678">+44 20 1234 5678</a>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:support@savileluxe.com">support@savileluxe.com</a>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Mon - Sat: 9:00 AM - 6:00 PM</span>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Map Section -->
+            <div class="map-section">
+                <h3><i class="fas fa-map-marked-alt"></i> Find Us</h3>
+                <div class="map-placeholder">
+                    <span>Google Maps Placeholder (Add API Key to Embed)</span>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <!-- Left Section (Logo, Social Media, Payment Methods) -->
+                <div class="footer-left">
+                    <!-- <img src="assets/logo.png" alt="SavileLuxe Logo" class="footer-logo"> -->
+                    <h1 class="logo">SAV<span>I</span>LELU<span>X</span>E</h1>
+                    <p class="tagline">Refined Elegance, Timeless Style.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                    <div class="payment-icons">
+                        <img src="assets/images/icons/paypal.png" alt="PayPal">
+                        <img src="assets/images/icons/visa.png" alt="Visa">
+                        <img src="assets/images/icons/mastercard.png" alt="MasterCard">
+                    </div>
+                </div>
+    
+                <!-- Quick Links -->
+                <div class="footer-links">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Categories -->
+                <div class="footer-links">
+                    <h5>Categories</h5>
+                    <ul>
+                        <li><a href="#">Men's Blazers</a></li>
+                        <li><a href="#">Casual Suits</a></li>
+                        <li><a href="#">Classic Wear</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Contact Us -->
+                <div class="footer-contact">
+                    <h5>Contact Us</h5>
+                    <p>Email: support@savileluxe.com</p>
+                    <p>Phone: +123 456 7890</p>
+                    <p>Address: 123 Street, City, Country</p>
+                </div>
+    
+                
+            </div>
+    
+            <!-- Copyright Message -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 SavileLuxe. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/swiper.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+            const formMessage = document.getElementById('formMessage');
+
+            // Basic validation
+            if (!name || !email || !subject || !message) {
+                formMessage.className = 'form-message error';
+                formMessage.textContent = 'Please fill out all fields.';
+                formMessage.style.display = 'block';
+                return;
+            }
+
+            if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+                formMessage.className = 'form-message error';
+                formMessage.textContent = 'Please enter a valid email address.';
+                formMessage.style.display = 'block';
+                return;
+            }
+
+            // Placeholder for form submission
+            formMessage.className = 'form-message success';
+            formMessage.textContent = 'Message sent successfully! We’ll get back to you soon.';
+            formMessage.style.display = 'block';
+
+            // Reset form
+            this.reset();
+        });
+    </script>
+</body>
+</html>

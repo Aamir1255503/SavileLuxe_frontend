@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about SavileLuxe, our story, mission, values, and team. Discover the essence of luxury menswear.">
+    <meta name="keywords" content="about us, savileluxe, luxury suits, brand story">
+    <meta name="robots" content="index, follow">
+    <title>SavileLuxe - About Us</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .container-fluid {
+            padding: 0 5%;
+        }
+        /* About Section */
+        .about-section {
+            padding: 60px 0; /* Adjusted padding for better spacing */
+        }
+        .section-heading {
+            font-size: 34px; /* Slightly larger for prominence */
+            font-weight: 700;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+            display: inline-block;
+            letter-spacing: 1.5px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        .section-subheading {
+            font-size: 16px;
+            color: #d0d0d0;
+            margin-bottom: 50px;
+            font-weight: 400;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 0.2s;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Brand Story */
+        .brand-story {
+            margin-bottom: 60px; /* Consistent section spacing */
+        }
+        .story-container {
+            background: rgba(255, 255, 255, 0.08); /* Slightly more opaque for prominence */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px 40px; /* Adjusted padding */
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 35px rgba(0, 123, 255, 0.15);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 0.4s;
+        }
+        .story-image img {
+            width: 100%;
+            height: 350px; /* Fixed height for consistency */
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background: linear-gradient(#1a1a1a, #1a1a1a) padding-box, linear-gradient(135deg, #007bff, #0056b3) border-box;
+        }
+        .story-content {
+            padding-right: 20px; /* Added padding for balance */
+        }
+        .story-content h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #e0e0e0;
+        }
+        .story-content p {
+            font-size: 15px;
+            color: #d0d0d0;
+            line-height: 1.8; /* Improved readability */
+            margin-bottom: 15px;
+        }
+        /* Our Values */
+        .values-section {
+            margin-bottom: 60px;
+        }
+        .values-section h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+            display: inline-block;
+            letter-spacing: 1.5px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 0.6s;
+        }
+        .value-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            height: 100%; /* Ensure equal height */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        .value-card:nth-child(1) { animation-delay: 0.8s; }
+        .value-card:nth-child(2) { animation-delay: 0.9s; }
+        .value-card:nth-child(3) { animation-delay: 1s; }
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.2);
+        }
+        .value-card i {
+            font-size: 32px;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+        .value-card h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #e0e0e0;
+        }
+        .value-card p {
+            font-size: 14px;
+            color: #d0d0d0;
+            line-height: 1.6;
+        }
+        /* Team Section */
+        .team-section {
+            margin-bottom: 60px;
+        }
+        .team-section h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+            display: inline-block;
+            letter-spacing: 1.5px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 1.2s;
+        }
+        .team-member {
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        .team-member:nth-child(1) { animation-delay: 1.4s; }
+        .team-member:nth-child(2) { animation-delay: 1.5s; }
+        .team-member img {
+            width: 160px; /* Consistent size */
+            height: 160px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 2px solid transparent;
+            background: linear-gradient(#1a1a1a, #1a1a1a) padding-box, linear-gradient(135deg, #007bff, #0056b3) border-box;
+        }
+        .team-member h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #e0e0e0;
+        }
+        .team-member p {
+            font-size: 14px;
+            color: #d0d0d0;
+        }
+        /* Call to Action */
+        .cta-section {
+            text-align: center;
+            padding: 40px 0; /* Added padding for better flow */
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            margin: 0 15px; /* Margin for balance */
+        }
+        .cta-section .btn-cta {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            border: none;
+            padding: 14px 35px; /* Slightly larger for prominence */
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 1.6s;
+        }
+        .cta-section .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.5);
+            background: linear-gradient(135deg, #0056b3, #007bff); /* Reversed gradient on hover */
+        }
+        /* Responsive Design */
+        @media (max-width: 991px) {
+            .story-container {
+                padding: 25px 30px;
+            }
+            .story-image img {
+                height: 300px;
+            }
+            .story-content {
+                padding-right: 0;
+                margin-bottom: 20px; /* Space between text and image when stacked */
+            }
+            .value-card {
+                margin-bottom: 20px;
+            }
+            .team-member {
+                margin-bottom: 20px;
+            }
+        }
+        @media (max-width: 767px) {
+            .about-section {
+                padding: 40px 0;
+            }
+            .section-heading {
+                font-size: 28px;
+            }
+            .section-subheading {
+                font-size: 14px;
+                margin-bottom: 30px;
+            }
+            .brand-story, .values-section, .team-section {
+                margin-bottom: 40px;
+            }
+            .story-container {
+                padding: 20px 25px;
+            }
+            .story-image img {
+                height: 200px;
+            }
+            .story-content h3 {
+                font-size: 20px;
+            }
+            .story-content p {
+                font-size: 14px;
+            }
+            .values-section h3, .team-section h3 {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+            .value-card {
+                padding: 20px;
+            }
+            .value-card i {
+                font-size: 28px;
+            }
+            .value-card h4 {
+                font-size: 16px;
+            }
+            .value-card p {
+                font-size: 13px;
+            }
+            .team-member img {
+                width: 120px;
+                height: 120px;
+            }
+            .team-member h4 {
+                font-size: 14px;
+            }
+            .team-member p {
+                font-size: 13px;
+            }
+            .cta-section {
+                padding: 30px 0;
+                margin: 0 10px;
+            }
+            .cta-section .btn-cta {
+                padding: 12px 30px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container-fluid about-section">
+            <!-- Header -->
+            <h2 class="section-heading">About Us</h2>
+            <p class="section-subheading">Discover the story behind SavileLuxe and our passion for luxury menswear.</p>
+
+            <!-- Brand Story -->
+            <div class="brand-story">
+                <div class="story-container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-md-12 order-lg-1 order-2">
+                            <div class="story-content">
+                                <h3>Our Story</h3>
+                                <p>Founded in 2010, SavileLuxe was born from a vision to redefine luxury menswear. Inspired by the timeless elegance of Savile Row, we craft suits that blend tradition with modern sophistication. Each piece is a testament to our dedication to quality, precision, and style.</p>
+                                <p>Our mission is to empower men to express their individuality through impeccably tailored suits. With a focus on sustainable materials and ethical craftsmanship, we aim to create a legacy of elegance that lasts for generations.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 order-lg-2 order-1">
+                            <div class="story-image">
+                                <img src="assets/images/store-front.jpg" alt="SavileLuxe Store">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Our Values -->
+            <div class="values-section">
+                <h3>Our Values</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="value-card">
+                            <i class="fas fa-star"></i>
+                            <h4>Quality</h4>
+                            <p>We use only the finest materials and craftsmanship to ensure every suit meets the highest standards.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="value-card">
+                            <i class="fas fa-gem"></i>
+                            <h4>Elegance</h4>
+                            <p>Our designs embody timeless sophistication, making you stand out with effortless style.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="value-card">
+                            <i class="fas fa-heart"></i>
+                            <h4>Customer Satisfaction</h4>
+                            <p>Your satisfaction is our priority. We’re here to make your experience exceptional.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Section -->
+            <div class="team-section">
+                <h3>Meet Our Team</h3>
+                <div class="row justify-content-center">
+                    <div class="col-md-5">
+                        <div class="team-member">
+                            <img src="assets/images/team-member1.jpg" alt="Team Member 1">
+                            <h4>John Doe</h4>
+                            <p>Founder & CEO</p>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="team-member">
+                            <img src="assets/images/team-member2.jpg" alt="Team Member 2">
+                            <h4>Jane Smith</h4>
+                            <p>Creative Director</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <a href="shop.html" class="btn-cta">Explore Our Collection</a>
+            </div>
+        </div>
+    </main>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

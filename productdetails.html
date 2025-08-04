@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore luxury Tuxedo Suits at SavileLuxe. Premium craftsmanship, timeless elegance, and unbeatable style for men.">
+    <meta name="keywords" content="tuxedo suits, luxury suits, mens fashion, savileluxe">
+    <meta name="robots" content="index, follow">
+    <title>SavileLuxe - Tuxedo Suits</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #0f0f0f;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .container-fluid {
+            padding: 0 5%;
+        }
+        /* Image Gallery */
+        .product-gallery {
+            position: relative;
+            padding: 20px 0;
+        }
+        .main-image {
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 12px;
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+        }
+        .main-image:hover img {
+            transform: scale(1.2);
+        }
+        .swiper-container-thumbs {
+            margin-top: 10px;
+            padding: 10px 0;
+        }
+        .swiper-slide-thumb {
+            width: 100px;
+            height: 100px;
+            opacity: 0.5;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: opacity 0.3s, border 0.3s;
+        }
+        .swiper-slide-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .swiper-slide-thumb-active {
+            opacity: 1;
+            border: 2px solid #007bff;
+        }
+        /* Product Details */
+        .product-details {
+            padding: 20px;
+        }
+        .product-details h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .product-details .price {
+            font-size: 28px;
+            font-weight: 500;
+            color: #ff4d4d;
+            margin-bottom: 15px;
+        }
+        .product-details p {
+            font-size: 16px;
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .product-details .rating {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+        .product-details .rating i {
+            color: #f1c40f;
+            font-size: 18px;
+            transition: transform 0.3s;
+        }
+        .product-details .rating i:hover {
+            transform: scale(1.2);
+        }
+        /* Options Container (Size, Color, Quantity) */
+        .options-container {
+            /* background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid #007bff;
+            border-radius: 12px; */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            /* padding: 10px; Reduced padding */
+            margin-bottom: 15px; /* Reduced margin */
+        }
+        .options-container .option-group {
+            margin-bottom: 12px; /* Reduced spacing between groups */
+        }
+        .options-container .option-group:last-child {
+            margin-bottom: 0;
+        }
+        .options-container label {
+            font-size: 14px; /* Smaller font */
+            color: #ddd;
+            margin-bottom: 6px; /* Reduced margin */
+            display: block;
+        }
+        /* Size Selector */
+        .size-selector {
+            display: flex;
+            gap: 6px; /* Reduced gap */
+            flex-wrap: wrap;
+        }
+        .size-selector .size-btn {
+            background: #1a1a1a;
+            border: 1px solid #007bff;
+            color: white;
+            padding: 5px 10px; /* Reduced padding */
+            border-radius: 20px;
+            font-size: 12px; /* Smaller font */
+            cursor: pointer;
+            transition: background 0.3s, border 0.3s, transform 0.2s;
+        }
+        .size-selector .size-btn:hover {
+            background: #007bff;
+            border-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .size-selector .size-btn.active {
+            background: #007bff;
+            border-color: #0056b3;
+            font-weight: 600;
+        }
+        /* Color Variants */
+        .color-selector {
+            display: flex;
+            gap: 8px; /* Reduced gap */
+            flex-wrap: wrap;
+        }
+        .color-selector .color-swatch {
+            width: 30px; /* Reduced size */
+            height: 30px; /* Reduced size */
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border 0.3s, transform 0.2s;
+            position: relative;
+        }
+        .color-selector .color-swatch:hover {
+            transform: scale(1.1);
+            border-color: #007bff;
+        }
+        .color-selector .color-swatch.active {
+            border-color: #007bff;
+        }
+        .color-selector .color-swatch.active::after {
+            content: '\f00c'; /* Font Awesome check icon */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 12px; /* Smaller icon */
+        }
+        /* Quantity Selector */
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 8px; /* Reduced gap */
+            /* background: #1a1a1a; */
+            padding: 5px 10px; /* Reduced padding */
+            border-radius: 20px;
+            width: fit-content;
+        }
+        .quantity-selector span {
+            font-size: 14px; /* Smaller font */
+            color: #ddd;
+            display: none; /* Removed 'Quantity' text to save space */
+        }
+        .quantity-selector .btn-quantity {
+            background: #007bff;
+            border: none;
+            color: white;
+            width: 30px; /* Reduced size */
+            height: 30px; /* Reduced size */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px; /* Smaller icon */
+            transition: background 0.3s, transform 0.2s;
+        }
+        .quantity-selector .btn-quantity:hover {
+            background: #0056b3;
+            transform: scale(1.1);
+        }
+        .quantity-selector .btn-quantity:active {
+            transform: scale(0.95);
+        }
+        .quantity-selector .btn-quantity:disabled {
+            background: #333;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .quantity-selector input {
+            width: 35px; /* Reduced width */
+            text-align: center;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 14px; /* Smaller font */
+            font-weight: 500;
+        }
+        .btn-add-to-cart {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .btn-add-to-cart:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+        /* Additional Info */
+        .additional-info {
+            margin-top: 30px;
+        }
+        .additional-info h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        .additional-info ul {
+            list-style: none;
+            padding: 0;
+        }
+        .additional-info ul li {
+            font-size: 15px;
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+        /* Responsive Design */
+        @media (max-width: 991px) {
+            .main-image {
+                height: 400px;
+            }
+            .swiper-slide-thumb {
+                width: 80px;
+                height: 80px;
+            }
+            .product-details h1 {
+                font-size: 28px;
+            }
+            .product-details .price {
+                font-size: 24px;
+            }
+            .product-details p {
+                font-size: 14px;
+            }
+        }
+        @media (max-width: 767px) {
+            .main-image {
+                height: 300px;
+            }
+            .swiper-slide-thumb {
+                width: 60px;
+                height: 60px;
+            }
+            .product-details h1 {
+                font-size: 24px;
+            }
+            .product-details .price {
+                font-size: 20px;
+            }
+            .product-details p {
+                font-size: 13px;
+            }
+            .options-container {
+                padding: 12px; /* Further reduced for mobile */
+            }
+            .options-container .option-group {
+                margin-bottom: 10px;
+            }
+            .options-container label {
+                font-size: 13px;
+            }
+            .size-selector .size-btn {
+                padding: 4px 8px;
+                font-size: 11px;
+            }
+            .color-selector .color-swatch {
+                width: 25px;
+                height: 25px;
+            }
+            .color-selector .color-swatch.active::after {
+                font-size: 10px;
+            }
+            .quantity-selector {
+                padding: 4px 8px;
+            }
+            .quantity-selector .btn-quantity {
+                width: 25px;
+                height: 25px;
+                font-size: 12px;
+            }
+            .quantity-selector input {
+                width: 30px;
+                font-size: 13px;
+            }
+            .btn-add-to-cart {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav id="navbar" class="home_page_nav">
+            <h1 class="logo">Sav<span>i</span>leLu<span>x</span>e</h1>
+            <ul>
+                <li><a href="#">Sale</a></li>
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Women</a></li>
+                <li><a href="#">New Arrivals</a></li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+            <form action="">
+                <input type="text" placeholder="Search Products">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+
+            <div class="icon__container">
+                <a href="#" class="icon"><i class="fas fa-heart"></i></a>
+                <a href="#" class="icon"><i class="fas fa-shopping-cart"></i></a>
+                <!-- <a href="#" class="icon"></a> -->
+            </div>
+            <button class="toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">SAVILELUXE</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul>
+                <li><a href="#">Sale</a></li>
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Women</a></li>
+                <li><a href="#">New Arrivals</a></li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+            <form action="">
+                <input type="text" placeholder="Search Products">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+
+            <div class="icon__container">
+                <a href="#" class="icon"><i class="fas fa-heart"></i></a>
+                <a href="#" class="icon"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <main>
+        <div class="container-fluid my-5">
+            <div class="row">
+                <!-- Product Gallery -->
+                <div class="col-lg-6 col-md-12 product-gallery">
+                    <div class="main-image swiper-container-main">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="assets/images/products/Tuxedos.jpg" alt="Tuxedo Suit Main">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/images/products/Tuxedos2.jpg" alt="Tuxedo Suit Side">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/images/products/Tuxedos3.jpg" alt="Tuxedo Suit Front">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/images/products/Tuxedos.jpg" alt="Tuxedo Suit Back">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-container-thumbs">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide swiper-slide-thumb">
+                                <img src="assets/images/products/Tuxedos.jpg" alt="Tuxedo Suit Main Thumbnail">
+                            </div>
+                            <div class="swiper-slide swiper-slide-thumb">
+                                <img src="assets/images/products/Tuxedos2.jpg" alt="Tuxedo Suit Side Thumbnail">
+                            </div>
+                            <div class="swiper-slide swiper-slide-thumb">
+                                <img src="assets/images/products/Tuxedos3.jpg" alt="Tuxedo Suit Front Thumbnail">
+                            </div>
+                            <div class="swiper-slide swiper-slide-thumb">
+                                <img src="assets/images/products/Tuxedos.jpg" alt="Tuxedo Suit Back Thumbnail">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Details -->
+                <div class="col-lg-6 col-md-12 product-details">
+                    <h1>Tuxedo Suits</h1>
+                    <div class="price">$1000</div>
+                    <p>Elevate your style with premium craftsmanship and timeless elegance. Perfect for formal events, weddings, or any occasion where you want to make a statement.</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <!-- Options Container -->
+                    <div class="options-container">
+                        <div class="d-flex gap-5">
+                            <!-- Size Selector -->
+                            <div class="option-group">
+                                <label>Size</label>
+                                <div class="size-selector">
+                                    <button class="size-btn active" data-size="S">S</button>
+                                    <button class="size-btn" data-size="M">M</button>
+                                    <button class="size-btn" data-size="L">L</button>
+                                    <button class="size-btn" data-size="XL">XL</button>
+                                </div>
+                            </div>
+                            <!-- Color Variants -->
+                            <div class="option-group">
+                                <label>Color</label>
+                                <div class="color-selector">
+                                    <div class="color-swatch active" data-color="Black" style="background: #000;"></div>
+                                    <div class="color-swatch" data-color="Navy" style="background: #001f3f;"></div>
+                                    <div class="color-swatch" data-color="Grey" style="background: #808080;"></div>
+                                </div>
+                            </div>
+                        </div>
+                   
+                        <!-- Quantity Selector -->
+                        <div class="option-group">
+                            <label>Quantity</label>
+                            <div class="quantity-selector">
+                                <button class="btn-quantity" id="decreaseQty"><i class="fas fa-minus"></i></button>
+                                <input type="text" id="quantity" value="1" readonly>
+                                <button class="btn-quantity" id="increaseQty"><i class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-add-to-cart">Add to Cart</button>
+                    <div class="additional-info">
+                        <h3>Product Details</h3>
+                        <ul>
+                            <li><strong>Material:</strong> Premium Wool Blend</li>
+                            <li><strong>Fit:</strong> Slim Fit</li>
+                            <li><strong>Color:</strong> Black</li>
+                            <li><strong>Occasion:</strong> Formal, Wedding, Evening Events</li>
+                            <li><strong>Care Instructions:</strong> Dry Clean Only</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <!-- Left Section (Logo, Social Media, Payment Methods) -->
+                <div class="footer-left">
+                    <!-- <img src="assets/logo.png" alt="SavileLuxe Logo" class="footer-logo"> -->
+                    <h1 class="logo">SAV<span>I</span>LELU<span>X</span>E</h1>
+                    <p class="tagline">Refined Elegance, Timeless Style.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                    <div class="payment-icons">
+                        <img src="assets/images/icons/paypal.png" alt="PayPal">
+                        <img src="assets/images/icons/visa.png" alt="Visa">
+                        <img src="assets/images/icons/mastercard.png" alt="MasterCard">
+                    </div>
+                </div>
+    
+                <!-- Quick Links -->
+                <div class="footer-links">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Categories -->
+                <div class="footer-links">
+                    <h5>Categories</h5>
+                    <ul>
+                        <li><a href="#">Men's Blazers</a></li>
+                        <li><a href="#">Casual Suits</a></li>
+                        <li><a href="#">Classic Wear</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Contact Us -->
+                <div class="footer-contact">
+                    <h5>Contact Us</h5>
+                    <p>Email: support@savileluxe.com</p>
+                    <p>Phone: +123 456 7890</p>
+                    <p>Address: 123 Street, City, Country</p>
+                </div>
+    
+                
+            </div>
+    
+            <!-- Copyright Message -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 SavileLuxe. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swiper for Main Image and Thumbnails
+        const swiperThumbs = new Swiper('.swiper-container-thumbs', {
+            spaceBetween: 10,
+            slidesPerView: 4,
+            freeMode: true,
+            watchSlidesVisibility: true,
+            watchSlidesProgress: true,
+        });
+
+        const swiperMain = new Swiper('.swiper-container-main', {
+            spaceBetween: 10,
+            thumbs: {
+                swiper: swiperThumbs,
+            },
+        });
+
+        // Quantity Selector Logic
+        const quantityInput = document.getElementById('quantity');
+        const decreaseBtn = document.getElementById('decreaseQty');
+        const increaseBtn = document.getElementById('increaseQty');
+
+        function updateQuantity(change) {
+            let quantity = parseInt(quantityInput.value);
+            quantity = Math.max(1, quantity + change); // Minimum quantity is 1
+            quantityInput.value = quantity;
+            decreaseBtn.disabled = quantity === 1;
+        }
+
+        decreaseBtn.addEventListener('click', () => updateQuantity(-1));
+        increaseBtn.addEventListener('click', () => updateQuantity(1));
+
+        // Size Selector Logic
+        document.querySelectorAll('.size-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+
+        // Color Selector Logic
+        document.querySelectorAll('.color-swatch').forEach(swatch => {
+            swatch.addEventListener('click', () => {
+                document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+                swatch.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
